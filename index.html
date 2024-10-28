@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Diwali Animation</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+<body>
+    <div class="poster">
+        <h1> दिवाळीच्या सर्वांना हार्दिक शुभेच्छा! </h1>
+        <p>“सगळा आनंद सगळे सौख्य,<br>
+            सगळ्या स्वप्नांची पूर्णता,<br>
+            यशाची सगळी शिखरे,<br>
+            सगळे ऐश्वर्य,<br>
+            हे आपल्याला मिळू दे,<br>
+            ही दीपावली आपल्या आयुष्याला एक नवा उजाळा देवू दे…”</p>
+        <div class="lanterns">
+            <!-- Floating lanterns generated here -->
+        </div>
+    </div>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #1a1a2e, #16213e, #0f3460);
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    color: #FFD700;
+}
+
+.poster {
+    text-align: center;
+    animation: fadeIn 2s ease-in-out;
+}
+
+h1 {
+    font-size: 3.5em;
+    color: #FFD700;
+    text-shadow: 0 0 15px #FFD700, 0 0 25px #FFA500, 0 0 35px #FF8C00;
+    margin-bottom: 0.5em;
+    position: relative;
+    animation: shimmer 2s infinite;
+}
+
+h1::before,
+h1::after {
+    content: "✨";
+    font-size: 1em;
+    color: #FFD700;
+    position: absolute;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+h1::before {
+    left: -1.7em;
+    top: 0.1em;
+    animation-delay: 0.3s;
+}
+
+h1::after {
+    right: -1.7em;
+    top: 0.1em;
+    animation-delay: 1s;
+}
+
+p {
+    font-size: 1.4em;
+    color: #FFFAF0;
+    margin-bottom: 3em;
+    line-height: 1.5;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+    animation: fadeText 3s ease-in-out;
+    margin-top: 50px;
+}
+
+.lanterns {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.lantern {
+    position: absolute;
+    bottom: 0;
+    width: 20px;
+    height: 30px;
+    background: radial-gradient(circle, #FFD700 40%, transparent 50%);
+    border-radius: 50% 50% 0 0;
+    opacity: 0.9;
+    animation: floatLantern 10s linear infinite;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes shimmer {
+    0%, 100% { text-shadow: 0 0 15px #FFD700, 0 0 25px #FFA500, 0 0 35px #FF8C00; }
+    50% { text-shadow: 0 0 20px #FFD700, 0 0 30px #FFA500, 0 0 40px #FF8C00; }
+}
+
+@keyframes sparkle {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+@keyframes fadeText {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatLantern {
+    0% { transform: translateY(0) scale(0.7); opacity: 1; }
+    50% { opacity: 0.9; }
+    100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+}
+
+    </style>
+    <script type="text/javascript">
+        const lanternsContainer = document.querySelector('.lanterns');
+
+// Function to create and animate lanterns
+function createLantern() {
+    const lantern = document.createElement('div');
+    lantern.classList.add('lantern');
+    
+    // Set random horizontal position and delay for natural effect
+    lantern.style.left = Math.random() * 100 + 'vw';
+    lantern.style.animationDelay = Math.random() * 5 + 's';
+    lantern.style.animationDuration = 8 + Math.random() * 3 + 's';
+    
+    lanternsContainer.appendChild(lantern);
+
+    // Remove lantern after animation ends
+    lantern.addEventListener('animationend', () => {
+        lantern.remove();
+    });
+}
+
+// Generate lanterns continuously
+setInterval(createLantern, 500);
+
+    </script>
+</body>
+</html>
